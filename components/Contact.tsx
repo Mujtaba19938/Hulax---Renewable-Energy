@@ -9,7 +9,7 @@ interface ContactProps {
 
 export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
   return (
-    <div className="relative w-full h-full min-h-[600px] flex items-center justify-center p-2 sm:p-6 lg:p-8 bg-gray-900">
+    <div className="relative w-full h-full flex items-center justify-center p-2 sm:p-6 lg:p-8 bg-gray-900 overflow-hidden">
 
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
@@ -26,12 +26,12 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
       <GlassCard className="relative z-10 w-full h-full max-w-[1600px] rounded-[2rem] sm:rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden flex flex-col border-white/30 !p-0">
 
         {/* Navbar Section */}
-        <div className="w-full px-4 py-4 sm:px-10 sm:py-8">
+        <div className="w-full px-4 py-4 sm:px-10 sm:py-8 shrink-0">
             <Navbar currentPage="Contact" onNavigate={onNavigate} />
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 w-full flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 pb-10 sm:pb-16 overflow-y-auto">
+        <div className="flex-1 w-full flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 py-6 sm:py-8 md:py-10 overflow-y-auto">
 
             <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
                 
