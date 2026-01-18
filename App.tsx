@@ -4,11 +4,19 @@ import { About } from './components/About';
 import { SolarSolutions } from './components/SolarSolutions';
 import { Project } from './components/Project';
 import { Blog } from './components/Blog';
+import { Article } from './components/Article';
 import { Contact } from './components/Contact';
 import { AnimatePresence, motion } from 'framer-motion';
+import { BlogPost } from './types';
 
 const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('Home');
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+
+  const handleReadArticle = (post: BlogPost) => {
+    setSelectedPost(post);
+    setCurrentPage('Article');
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -16,14 +24,15 @@ const App: React.FC = () => {
         case 'About': return <About onNavigate={setCurrentPage} />;
         case 'Solar Solutions': return <SolarSolutions onNavigate={setCurrentPage} />;
         case 'Project': return <Project onNavigate={setCurrentPage} />;
-        case 'Blog': return <Blog onNavigate={setCurrentPage} />;
+        case 'Blog': return <Blog onNavigate={setCurrentPage} onReadArticle={handleReadArticle} />;
+        case 'Article': return <Article post={selectedPost} onNavigate={setCurrentPage} />;
         case 'Contact': return <Contact onNavigate={setCurrentPage} />;
         default: return <Hero onNavigate={setCurrentPage} />;
     }
   };
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-black relative">
+    <div className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-black">
       <AnimatePresence mode="wait">
         <motion.div
             key={currentPage}

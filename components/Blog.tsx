@@ -2,13 +2,15 @@ import React from 'react';
 import { Navbar } from './Navbar';
 import { GlassCard } from './ui/GlassCard';
 import { Clock, ArrowRight, Tag } from 'lucide-react';
+import { BlogPost } from '../types';
 
 interface BlogProps {
   onNavigate: (page: string) => void;
+  onReadArticle: (post: BlogPost) => void;
 }
 
-export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
-  const posts = [
+export const Blog: React.FC<BlogProps> = ({ onNavigate, onReadArticle }) => {
+  const posts: BlogPost[] = [
     {
       id: 1,
       title: "The Future of Green Hydrogen",
@@ -78,7 +80,11 @@ export const Blog: React.FC<BlogProps> = ({ onNavigate }) => {
                 {/* Blog Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full flex-shrink-0">
                     {posts.map((post) => (
-                        <div key={post.id} className="group flex flex-col rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+                        <div 
+                            key={post.id} 
+                            onClick={() => onReadArticle(post)}
+                            className="group flex flex-col rounded-[2rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+                        >
                             {/* Image Section */}
                             <div className="h-48 relative overflow-hidden">
                                  <img 
